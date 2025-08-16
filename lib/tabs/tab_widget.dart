@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news_application/model/SourceResponse.dart';
+import 'package:news_application/Api/api_manager.dart';
+import 'package:news_application/news/news_widget.dart';
 import 'package:news_application/tabs/tab_item.dart';
+
+import '../app_color.dart';
+import '../model/NewsResponse.dart';
 
 class TabWidget extends StatefulWidget {
   List<Source> sourceList;
-
+  
   TabWidget({required this.sourceList});
 
   @override
@@ -38,7 +43,8 @@ class _TabWidgetState extends State<TabWidget> {
                 ).toList()
 
 
-            )
+            ),
+            Expanded(child: NewsWidget(source: widget.sourceList[selectedIndex]))
           ],
         ));
   }

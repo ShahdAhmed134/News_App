@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:news_application/app_color.dart';
+import 'package:news_application/category/category_details.dart';
+import 'package:news_application/category/category_fragment.dart';
+import 'package:news_application/home_drawer.dart';
 import 'package:news_application/model/SourceResponse.dart';
-import 'package:news_application/model/api_manager.dart';
+import 'package:news_application/Api/api_manager.dart';
+import 'package:news_application/model/category.dart';
+import 'package:news_application/setting.dart';
 import 'package:news_application/tabs/tab_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 static const String routeName= 'Home';
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -20,51 +30,43 @@ static const String routeName= 'Home';
           ),
         ),
         Scaffold(
+          drawer: Drawer(
+            width: MediaQuery.of(context).size.width*0.55,
+            child: HomeDrawer(onClickDrawer: onClickDrawer ,)
+          ),
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text('News APP',
               style: Theme.of(context).textTheme.titleLarge,),
           ),
-          body: FutureBuilder<SourceResponse?>(
-              future: ApiManager.getSources(),
-              builder: (context,snapshot){
-                if(snapshot.connectionState == ConnectionState.waiting){
-                 return Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ),
-                  );
-                }
-                else if(snapshot.hasError){
-                  return Column(
-                    children: [
-                      Text('Something Went Wrong'),
-                      ElevatedButton(
-                          onPressed: (){},
-                          child: Text('Try Again'))
-                    ],
-                  );
-                }
-                if(snapshot.data!.status != 'ok'){
-                  return Column(
-                    children: [
-                      Text(snapshot.data!.message!),
-                      ElevatedButton(
-                          onPressed: (){},
-                          child: Text('Try Again'))
-                    ],
-                  );
-                }
-
-                var sourceList = snapshot.data!.sources!;
-                return TabWidget(sourceList: sourceList);
-
-              }
-              ),
+          body: selectedItem== HomeDrawer.setting?
+              Setting()
+          :
+          selectedCategory ==null ?
+          
+          CategoryFragment(onClickItem: onClickItem)
+              :
+              CategoryDetails(category: selectedCategory!)
 
         ),
       ],
 
     );
+  }
+Category? selectedCategory ;
+  onClickItem(Category newCategory) {
+    selectedCategory=newCategory;
+    setState(() {
+
+    });
+  }
+int selectedItem=HomeDrawer.categories;
+  onClickDrawer(int newItem) {
+    selectedCategory=null;
+    selectedItem=newItem;
+    Navigator.pop(context);
+    setState(() {
+
+    });
   }
 }
