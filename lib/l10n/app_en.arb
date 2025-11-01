@@ -1,0 +1,22 @@
+{
+  "setting": "Setting",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "french":"French",
+  "news" :"News",
+  "sports" :"Sports",
+  "technology":"Technology",
+  "health":"Health",
+  "business":"Business",
+  "general":"General",
+  "science":"Science",
+  "categories":"Categories",
+  "settings":"Settings",
+  "pickCategory": "Pick your category \nof interest",
+  "somethingWentWrong": "Something Went Wrong",
+  "tryAgain": "Try Again",
+  "noFoundResult": "No Results Found",
+  "noSuggestion": "No Suggestions",
+   "viewArticle": "View Article"
+}

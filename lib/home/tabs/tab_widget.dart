@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_application/home/tabs/tab_item.dart';
 import 'package:news_application/model/SourceResponse.dart';
-import 'package:news_application/Api/api_manager.dart';
-import 'package:news_application/news/news_widget.dart';
-import 'package:news_application/tabs/tab_item.dart';
 
-import '../app_color.dart';
-import '../model/NewsResponse.dart';
+import '../news/news_widget.dart';
 
 class TabWidget extends StatefulWidget {
   List<Source> sourceList;
@@ -21,18 +18,20 @@ class _TabWidgetState extends State<TabWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return DefaultTabController(
 
         length: widget.sourceList.length,
         child: Column(
           children: [
-            TabBar(
+            TabBar( 
               onTap: (index){
                 selectedIndex = index;
                 setState(() {
 
                 });
-              },
+              },  
                isScrollable: true,
                 dividerColor: Colors.transparent ,
                indicatorColor: Colors.transparent,

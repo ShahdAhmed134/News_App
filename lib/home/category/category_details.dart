@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_application/model/category.dart';
-
-import '../app_color.dart';
-import '../model/SourceResponse.dart';
-import '../Api/api_manager.dart';
+import '../../Api/api_manager.dart';
+import '../../app_color.dart';
+import '../../l10n/app_localizations.dart';
+import '../../model/SourceResponse.dart';
 import '../tabs/tab_widget.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -18,7 +18,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return  FutureBuilder<SourceResponse?>(
-        future: ApiManager.getSources(widget.category.id),
+        future: ApiManager.getSources(context,widget.category.id),
         builder: (context,snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
             return Center(
@@ -32,19 +32,31 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               child: Column(
 
                 children: [
-                  Text('Something Went Wrong'),
+                  Text( AppLocalizations.of(context)!.somethingWentWrong,),
                   ElevatedButton(
                       onPressed: (){
-                        ApiManager.getSources(widget.category.id);
+                        ApiManager.getSources(context,widget.category.id);
                         setState(() {
 
                         });
                       },
-                      child: Text('Try Again'))
+                      child: Text( AppLocalizations.of(context)!.tryAgain,))
                 ],
               ),
             );
           }
+
+
+          // ✅ لو مفيش بيانات أصلاً
+          if (snapshot.data == null || snapshot.data!.sources == null || snapshot.data!.sources!.isEmpty) {
+            return Center(
+              child: Text(
+                AppLocalizations.of(context)!.noFoundResult,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            );
+          }
+
           if(snapshot.data!.status != 'ok'){
             return Center(
               child: Column(
@@ -52,12 +64,12 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Text(snapshot.data!.message!),
                   ElevatedButton(
                       onPressed: (){
-                        ApiManager.getSources(widget.category.id);
+                        ApiManager.getSources(context,widget.category.id);
                         setState(() {
 
                         });
                       },
-                      child: Text('Try Again'))
+                      child: Text( AppLocalizations.of(context)!.tryAgain,))
                 ],
               ),
             );

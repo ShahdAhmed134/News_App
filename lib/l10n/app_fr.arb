@@ -1,0 +1,22 @@
+{
+  "setting": "Paramètre",
+  "language": "Langue",
+  "english": "Anglais",
+  "arabic": "Arabe",
+  "french": "Français",
+  "news": "Actualités",
+  "sports": "Sports",
+  "technology": "Technologie",
+  "health": "Santé",
+  "business": "Affaires",
+  "general": "Général",
+  "science": "Science",
+  "categories": "Catégories",
+  "settings": "Paramètres",
+  "pickCategory": "Choisissez votre catégorie \nd'intérêt",
+   "somethingWentWrong": "Une erreur s'est produite",
+   "tryAgain": "Réessayer",
+   "noFoundResult": "Aucun résultat trouvé",
+   "noSuggestion": "Aucune suggestion",
+     "viewArticle": "Voir l'article"
+}

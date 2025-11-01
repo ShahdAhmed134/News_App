@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:news_application/app_color.dart';
-import 'package:news_application/category/category_item.dart';
 import 'package:news_application/model/category.dart';
 
+import '../../l10n/app_localizations.dart';
+import 'category_item.dart';
+
 class CategoryFragment extends StatelessWidget {
-var categoryList = Category.getCategories();
 Function onClickItem;
 CategoryFragment({required this.onClickItem});
   @override
   Widget build(BuildContext context) {
+    var categoryList = Category.getCategories(context);
+
     return Container(
       padding: EdgeInsets.all(15),
       margin:  EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Pick your category \nof interest',
+          Text( AppLocalizations.of(context)!.pickCategory,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
             color: AppColors.blackColor
           ),),

@@ -1,0 +1,22 @@
+{
+  "setting": "الإعدادات",
+  "language": "اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "french": "الفرنسية",
+  "news": "الأخبار",
+  "sports": "الرياضة",
+  "technology": "التكنولوجيا",
+  "health": "الصحة",
+  "business": "الأعمال",
+  "general": "عام",
+  "science": "العلوم",
+  "categories": "الفئات",
+  "settings": "الإعدادات",
+  "pickCategory": "اختر الفئة التي تهمك",
+   "somethingWentWrong": "حدث خطأ ما",
+   "tryAgain": "حاول مرة أخرى",
+   "noFoundResult": "لا توجد نتائج",
+   "noSuggestion": "لا توجد اقتراحات",
+     "viewArticle": "عرض المقال"
+}

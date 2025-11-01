@@ -20,7 +20,7 @@ class TabItem extends StatelessWidget {
             color: AppColors.primaryColor,
             width: 2
         ),
-            color: isSelected ? AppColors.primaryColor : Colors.transparent,
+        color: isSelected ? AppColors.primaryColor : Colors.transparent,
       ),
       child: Text(source.name??'',
       style: TextStyle(
