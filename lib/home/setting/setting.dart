@@ -11,10 +11,11 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
-  String selectedLanguage = "en"; // اللغة الافتراضية
 
+  late AppConfigProvider appProvider;
   @override
   Widget build(BuildContext context) {
+    appProvider=Provider.of<AppConfigProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.05,
@@ -56,9 +57,9 @@ class _SettingState extends State<Setting> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      selectedLanguage == "en"
+                      appProvider.language  == "en"
                           ? AppLocalizations.of(context)!.english
-                          : selectedLanguage == "ar"
+                          : appProvider.language  == "ar"
                           ? AppLocalizations.of(context)!.arabic
                           : AppLocalizations.of(context)!.french,
                       style: TextStyle(
@@ -80,10 +81,10 @@ class _SettingState extends State<Setting> {
 
   void showLanguageBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      context: context,
-      backgroundColor: AppColors.whiteColor,
-      clipBehavior: Clip.antiAlias,
-      builder: (context) => LanguageBottomSheet()
+        context: context,
+        backgroundColor: AppColors.whiteColor,
+        clipBehavior: Clip.antiAlias,
+        builder: (context) => LanguageBottomSheet()
     );
   }
 }
